@@ -52,9 +52,6 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
-              Download CV
-            </button>
           </div>
 
           {/* Mobile menu button */}
