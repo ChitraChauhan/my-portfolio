@@ -44,7 +44,7 @@ export default function About() {
             <h3 className="text-2xl font-semibold text-slate-800 mb-4">Who am I?</h3>
             <p className="text-slate-600 mb-4">
               I'm a Frontend Developer with 6 years of experience in the IT industry, specializing in building responsive, scalable, and user-friendly web applications. I have hands-on experience working with Angular and React in production environments, where I’ve contributed to high-impact projects, optimized performance, and implemented reusable UI components with a focus on clean architecture and user experience.
-              I also have working knowledge of Vue.js and Next.js, having built several personal projects to explore advanced features like SSR, routing, and state management. Additionally, I’m familiar with Node.js, which I've used in personal projects to build APIs and backend services, enhancing my full-stack development capabilities.
+              I also have working knowledge of Vue.js, Next.js and React-Native, having built several personal projects to explore advanced features like SSR, routing, and state management. Additionally, I’m familiar with Node.js and Nest.js, which I've used in personal projects to build APIs and backend services, enhancing my full-stack development capabilities.
               I’m passionate about writing clean, maintainable code, staying up-to-date with the latest frontend technologies, and collaborating with cross-functional teams to deliver seamless user experiences.
             </p>
             
