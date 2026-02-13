@@ -8,7 +8,9 @@ interface IProject {
     description: string;
     role?: string;
     tags: string[];
-    demoUrl: string;
+    demoUrl?: string;
+    FERepo?: string;
+    BERepo?: string;
 }
 // Animation variants
 const container = {
@@ -87,6 +89,8 @@ const personalProjects: IProject[] = [
         description: 'This is a mini Instagram-like social media project built entirely by me using React and Node.js. It includes essential features such as email and OTP verification, searchable feed, real-time chat using sockets, followers/following management, comments and user profile editing. After signing in, users are directed to a home page with a navigation bar to explore different sections, create new posts, chat with previous contacts, and manage their connections.',
         tags: ['React', 'RTK Query', 'React Context API', 'Bootstrap', 'socket.io-client', 'Node.js', 'Express', 'MongoDB'],
         demoUrl: 'https://chitra-react-postgram.netlify.app',
+        FERepo: 'https://github.com/ChitraChauhan/React-Postgram',
+        BERepo: 'https://github.com/ChitraChauhan/React-Postgram-Backend',
     },
     {
         id: 2,
@@ -94,7 +98,8 @@ const personalProjects: IProject[] = [
         subTitle: 'Postgram: It is an Instagram-like social media app',
         description: 'This is a mini Instagram-like social media project built entirely by me using React-Native and Nest.js. It includes searchable feed, real-time chat using sockets, followers/following management, and user profile editing. After signing in, users are directed to a home page with a navigation bar to explore different sections, create new posts, chat with previous contacts, and manage their connections.',
         tags: ['React-Native', 'socket.io-client', 'Nest.js', 'MongoDB'],
-        demoUrl: 'https://chitra-react-postgram.netlify.app',
+        FERepo: 'https://github.com/ChitraChauhan/ReactNative-Postgram/',
+        BERepo: 'https://github.com/ChitraChauhan/Nest-Postgram',
     },
     {
         id: 3,
@@ -102,7 +107,8 @@ const personalProjects: IProject[] = [
         subTitle: 'MEANKart: It is an E-commerce Application',
         description: 'It is an e-commerce platform with product catalog, filters, cart, order history, and Razorpay payment integration.',
         tags: ['Angular 20', 'TailwindCSS', 'Node.js', 'Express', 'MongoDB', 'Razorpay'],
-        demoUrl: ''
+        FERepo: 'https://github.com/ChitraChauhan/MeanKart',
+        BERepo: 'https://github.com/ChitraChauhan/MeanKart-BE'
     },
 ]
 
@@ -217,7 +223,7 @@ export default function Projects() {
                         >
                             <div
                                 className="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center relative overflow-hidden group">
-                                <div
+                                {project.demoUrl && <div
                                     className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <motion.a
                                         href={project.demoUrl}
@@ -229,7 +235,7 @@ export default function Projects() {
                                     >
                                         <EyeIcon className="h-5 w-5"/>
                                     </motion.a>
-                                </div>
+                                </div>}
                                 <span className="text-white text-lg font-medium">{project.title}</span>
                             </div>
                             <div className="p-6 flex-1 flex flex-col">
@@ -251,7 +257,7 @@ export default function Projects() {
                                         </motion.span>
                                     ))}
                                 </div>
-                                <div className="flex justify-between pt-4 border-t border-slate-100">
+                                {project.demoUrl && <div className="flex justify-between pt-4 border-t border-slate-100">
                                     <motion.a
                                         href={project.demoUrl}
                                         className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
@@ -261,6 +267,30 @@ export default function Projects() {
                                     >
                                         <EyeIcon className="h-4 w-4 mr-1"/>
                                         Live Demo
+                                    </motion.a>
+                                </div>}
+                                <div className="flex justify-between pt-4 border-t border-slate-100">
+                                    <motion.a
+                                        href={project.FERepo}
+                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                                        whileHover={{x: 2}}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <EyeIcon className="h-4 w-4 mr-1"/>
+                                        FE Repo
+                                    </motion.a>
+                                </div>
+                                <div className="flex justify-between pt-4 border-t border-slate-100">
+                                    <motion.a
+                                        href={project.BERepo}
+                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                                        whileHover={{x: 2}}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <EyeIcon className="h-4 w-4 mr-1"/>
+                                        BE Repo
                                     </motion.a>
                                 </div>
                             </div>
