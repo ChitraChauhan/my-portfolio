@@ -39,7 +39,7 @@ export default function Hero() {
             </span>
           </motion.div>
           
-          {["Hi, I'm", "Chitra Sankariya", "Senior Software Developer"].map((text, i) => (
+          {["Hi, I'm", "Chitra Chauhan", "Senior Software Developer"].map((text, i) => (
             <motion.h4
               key={i} 
               variants={item}

@@ -22,7 +22,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Chitra Sankariya</h3>
+            <h3 className="text-lg font-semibold text-slate-900 mb-4">Chitra Chauhan</h3>
             <p className="text-slate-600">
               A passionate Frontend Developer dedicated to creating beautiful and functional web applications.
             </p>
@@ -89,7 +89,7 @@ export default function Footer() {
           className="mt-12 pt-8 border-t border-slate-200 text-center"
         >
           <p className="text-sm text-slate-500">
-            &copy; {2025} Chitra Sankariya. All rights reserved.
+            &copy; {2025} Chitra Chauhan. All rights reserved.
           </p>
           <p className="mt-1 text-xs text-slate-500">
             Made with ❤️ using Next.js, TypeScript, and Tailwind CSS
