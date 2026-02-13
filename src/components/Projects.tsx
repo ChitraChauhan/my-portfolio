@@ -56,7 +56,7 @@ const companyProjects: IProject[] = [
             'Integrated Smartfeed to display personalized feeds from the open web.',
         role: 'Did maintanance - Managed lifecycle, ensured best practices',
         tags: ['Angular 6', 'Bootstrap'],
-        demoUrl: 'https://www.movieranker.com/',
+        demoUrl: 'https://webosmotic.com/portfolio/movieranker/',
     },
     {
         id: 2,
@@ -68,7 +68,7 @@ const companyProjects: IProject[] = [
             'Altavod’s implementation demanded the integration of NGXS with a facade structure.',
         role: 'Led frontend, optimized performance, Reduced load time',
         tags: ['Angular 11', 'Ngxs', 'Rxjs', 'Tailwindcss', 'Stripe'],
-        demoUrl: 'https://www.altavod.com/',
+        demoUrl: 'https://webosmotic.com/portfolio/altavod/',
     },
     {
         id: 3,
