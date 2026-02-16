@@ -88,7 +88,6 @@ const personalProjects: IProject[] = [
         subTitle: 'Postgram: It is an Instagram-like social media web application',
         description: 'This is a mini Instagram-like social media project built entirely by me using React and Node.js. It includes essential features such as email and OTP verification, searchable feed, real-time chat using sockets, followers/following management, comments and user profile editing. After signing in, users are directed to a home page with a navigation bar to explore different sections, create new posts, chat with previous contacts, and manage their connections.',
         tags: ['React', 'RTK Query', 'React Context API', 'Bootstrap', 'socket.io-client', 'Node.js', 'Express', 'MongoDB'],
-        demoUrl: 'https://chitra-react-postgram.netlify.app',
         FERepo: 'https://github.com/ChitraChauhan/React-Postgram',
         BERepo: 'https://github.com/ChitraChauhan/React-Postgram-Backend',
     },
