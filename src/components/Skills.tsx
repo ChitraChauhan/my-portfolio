@@ -3,68 +3,78 @@ import { motion } from 'framer-motion';
 const skills = [
   {
     category: 'Frontend',
+    icon: '🎨',
     items: [
-      { name: 'JavaScript', level: 90 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'jQuery', level: 90 },
-      { name: 'Angular', level: 90 },
-      { name: 'Rxjs', level: 90 },
-      { name: 'Ngxs', level: 90 },
-      { name: 'React', level: 70 },
-      { name: 'Redux', level: 70 },
-      { name: 'React Native', level: 70 },
-      { name: 'Vue.js', level: 60 },
-      { name: 'Next.js', level: 60 },
-      { name: 'HTML5', level: 90 },
-      { name: 'CSS3', level: 90 },
-      { name: 'Bootstrap', level: 90 },
-      { name: 'Tailwind CSS', level: 90 },
+      'JavaScript',
+      'TypeScript',
+      'Angular',
+      'Rxjs',
+      'Ngxs',
+      'React',
+      'Vue.js',
+      'Next.js',
+      'HTML5',
+      'CSS3',
+      'Bootstrap',
+      'Tailwind CSS',
     ],
   },
   {
     category: 'Backend',
+    icon: '⚙️',
     items: [
-      { name: 'Node.js', level: 80 },
-      { name: 'Express', level: 80 },
-      { name: 'Nest.js', level: 60 },
+      'Node.js',
+      'Express',
+      'Nest.js',
     ],
   },
   {
     category: 'Database',
+    icon: '💾',
     items: [
-      { name: 'MongoDB', level: 80 },
-      { name: 'PostgreSQL', level: 50 },
-      { name: 'MySQL', level: 50 },
-      { name: 'Microsoft SQL Server', level: 50 },
+      'MongoDB',
     ],
   },
   {
-    category: 'VCS & Code Hosting Platforms',
+    category: 'Tools & Platforms',
+    icon: '💻',
     items: [
-      { name: 'Git', level: 90 },
-      { name: 'Jira', level: 90 },
-      { name: 'GitLab', level: 90 },
-      { name: 'GitHub', level: 90 },
-      { name: 'BitBucket', level: 80 },
+      'Git',
+      'Jira',
+      'GitLab',
+      'GitHub',
+      'BitBucket',
     ],
   },
   {
     category: 'Soft Skills',
+    icon: '🤝',
     items: [
-      { name: 'Communication', level: 85 },
-      { name: 'Teamwork', level: 85 },
-      { name: 'Problem solving', level: 85 },
-      { name: 'Time Management', level: 85 },
-      { name: 'Quick Learning', level: 85 },
-      { name: 'Leadership', level: 85 },
+      'Communication',
+      'Teamwork',
+      'Problem solving',
+      'Time Management',
+      'Quick Learning',
+      'Leadership',
+    ],
+  },
+  {
+    category: 'Cloud & Deployment',
+    icon: '🚀',
+    items: [
+      'Vercel',
+      'Netlify',
+      'AWS',
+      'Render',
     ],
   },
   {
     category: 'Language',
+    icon: '🌐',
     items: [
-      { name: 'English', level: 85 },
-      { name: 'Gujarati', level: 85 },
-      { name: 'Hindi', level: 85 },
+      'English',
+      'Gujarati',
+      'Hindi',
     ],
   },
 ];
@@ -72,7 +82,7 @@ const skills = [
 export default function Skills() {
   return (
     <section id="skills" className="py-20 bg-slate-50">
-      <div className="container">
+      <div className="container px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,10 +90,10 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">My Skills</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">Tech Stack Expertise</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
           <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-            Here are the technologies I've been working with recently.
+            Comprehensive experience across modern web technologies and tools
           </p>
         </motion.div>
 
@@ -95,32 +105,20 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-md"
+              className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start text-left"
             >
-              <h3 className="text-xl font-semibold text-center text-slate-800 mb-6">
+              <div className="text-3xl mb-4 select-none">{skillCategory.icon}</div>
+              <h3 className="text-xl font-bold text-slate-900 mb-5">
                 {skillCategory.category}
               </h3>
-              <div className="space-y-4">
-                {skillCategory.items.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium text-slate-700">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-slate-500">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2">
-                      <motion.div
-                        className="bg-blue-600 h-2 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
-                      />
-                    </div>
-                  </div>
+              <ul className="space-y-3.5">
+                {skillCategory.items.map((item) => (
+                  <li key={item} className="flex items-start text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-3 mt-2 flex-shrink-0 select-none" />
+                    <span className="text-base font-normal leading-tight">{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -128,3 +126,4 @@ export default function Skills() {
     </section>
   );
 }
+

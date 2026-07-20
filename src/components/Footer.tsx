@@ -2,10 +2,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  
   const footerLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
@@ -24,7 +21,7 @@ export default function Footer() {
           >
             <h3 className="text-lg font-semibold text-slate-900 mb-4">Chitra Chauhan</h3>
             <p className="text-slate-600">
-              A passionate Frontend Developer dedicated to creating beautiful and functional web applications.
+              A passionate MEAN & MERN stack developer dedicated to creating beautiful and functional web applications.
             </p>
           </motion.div>
 
@@ -39,7 +36,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-slate-600 hover:text-blue-600 transition-colors"
                   >

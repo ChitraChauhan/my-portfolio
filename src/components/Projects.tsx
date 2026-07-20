@@ -1,5 +1,5 @@
-import {motion} from 'framer-motion';
-import {EyeIcon} from '@heroicons/react/24/outline';
+import { motion } from 'framer-motion';
+import { EyeIcon } from '@heroicons/react/24/outline';
 
 interface IProject {
     id: number;
@@ -14,7 +14,7 @@ interface IProject {
 }
 // Animation variants
 const container = {
-    hidden: {opacity: 0},
+    hidden: { opacity: 0 },
     show: {
         opacity: 1,
         transition: {
@@ -24,7 +24,7 @@ const container = {
 };
 
 const item = {
-    hidden: {opacity: 0, y: 20},
+    hidden: { opacity: 0, y: 20 },
     show: {
         opacity: 1,
         y: 0,
@@ -55,7 +55,7 @@ const companyProjects: IProject[] = [
             'Implemented additional features to enhance website performance, such as lazy loading and image lazy loading. ' +
             'Integrated Smartfeed to display personalized feeds from the open web.',
         role: 'Did maintanance - Managed lifecycle, ensured best practices',
-        tags: ['Angular 6', 'Bootstrap'],
+        tags: ['Angular 2', 'Bootstrap'],
         demoUrl: 'https://webosmotic.com/portfolio/movieranker/',
     },
     {
@@ -78,6 +78,17 @@ const companyProjects: IProject[] = [
         tags: ['Angular 13', 'Ngxs', 'Rxjs', 'Bootstrap', 'PrimeNg', 'Syncfusion', 'd3', 'Playwright'],
         role: 'Led frontend, optimized performance, Reduced load time',
         demoUrl: 'https://webosmotic.com/portfolio/okr-steering/',
+    },
+    {
+        id: 4,
+        title: 'Coables',
+        subTitle: 'Online Therapy for Kids SaaS Platform',
+        description: 'Built a modular, scalable Node.js & Express SaaS platform with secure JWT-based multi-role authentication. ' +
+            'Designed optimized MongoDB data models and a custom slot-generation appointment engine for dynamic therapist scheduling. ' +
+            'Developed a robust RESTful API ecosystem powering seamless web and mobile client integration for therapy session management.',
+        tags: ['Node.js', 'React.js', 'React Native', 'MongoDB', 'AWS'],
+        role: 'Led frontend and backend both the Application.',
+        demoUrl: 'https://webosmotic.com/portfolio/coables/',
     },
 ];
 
@@ -109,6 +120,17 @@ const personalProjects: IProject[] = [
         FERepo: 'https://github.com/ChitraChauhan/MeanKart',
         BERepo: 'https://github.com/ChitraChauhan/MeanKart-BE'
     },
+    {
+        id: 4,
+        title: 'StoryForge',
+        subTitle: 'A cloud-native, AI-integrated collaborative storytelling platform.',
+        description: 'Interactive multi-chapter Story Editor with collaborative sharing. ' +
+            'Creative writing AI co-writer (prompt enhancement, story idea generation, and chapter editor). ' +
+            'Queue-based background export worker system that dynamically starts/stops AWS EC2 instances to process PDF exports, storing results in AWS S3 and notifying users via AWS SES/SNS.',
+        tags: ['React 19', 'NestJS', 'MongoDB', 'AWS', 'OpenAI API', 'MUI'],
+        FERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-FE',
+        BERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-BE'
+    },
 ]
 
 export default function Projects() {
@@ -116,10 +138,10 @@ export default function Projects() {
         <section id="projects" className="py-20 bg-slate-50">
             <div className="container mx-auto px-4 mb-5">
                 <motion.div
-                    initial={{opacity: 0, y: 20}}
-                    whileInView={{opacity: 1, y: 0}}
-                    viewport={{once: true}}
-                    transition={{duration: 0.5}}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl font-bold text-slate-900 mb-4">Company Projects</h2>
@@ -130,7 +152,7 @@ export default function Projects() {
                     variants={container}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{once: true}}
+                    viewport={{ once: true }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {companyProjects.map((project) => (
@@ -142,67 +164,70 @@ export default function Projects() {
                         >
                             <div
                                 className="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center relative overflow-hidden group">
-                                <div
-                                    className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <motion.a
-                                        href={project.demoUrl}
-                                        className="bg-white text-blue-600 p-2 rounded-full mx-1 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-                                        whileHover={{scale: 1.1}}
-                                        whileTap={{scale: 0.95}}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-5 w-5"/>
-                                    </motion.a>
-                                </div>
+                                {project.demoUrl && (
+                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <motion.a
+                                            href={project.demoUrl}
+                                            className="bg-white text-blue-600 p-2 rounded-full mx-1 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <EyeIcon className="h-5 w-5" />
+                                        </motion.a>
+                                    </div>
+                                )}
                                 <span className="text-white text-lg font-medium">{project.title}</span>
                             </div>
                             <div className="p-6 flex-1 flex flex-col">
                                 <h3 className="text-xl font-semibold text-slate-900 mb-2">
                                     {project.subTitle}
                                 </h3>
-                                <p className="text-slate-600 mb-4 flex-1">{project.description}</p>
+                                <p className="text-slate-600 mb-4 flex-1 whitespace-pre-line">{project.description}</p>
                                 {project.role && <p className="text-slate-600 mb-4 flex-1"><b>My Role: </b>{project.role}</p>}
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.map((tag) => (
                                         <motion.span
                                             key={tag}
-                                            initial={{opacity: 0, scale: 0.8}}
-                                            whileInView={{opacity: 1, scale: 1}}
-                                            viewport={{once: true}}
-                                            transition={{duration: 0.3}}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.3 }}
                                             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
                                         >
                                             {tag}
                                         </motion.span>
                                     ))}
                                 </div>
-                                <div className="flex justify-between pt-4 border-t border-slate-100">
-                                    <motion.a
-                                        href={project.demoUrl}
-                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{x: 2}}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-4 w-4 mr-1"/>
-                                        Live Demo
-                                    </motion.a>
-                                </div>
+                                {project.demoUrl && (
+                                    <div className="flex justify-between pt-4 border-t border-slate-100">
+                                        <motion.a
+                                            href={project.demoUrl}
+                                            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                                            whileHover={{ x: 2 }}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <EyeIcon className="h-4 w-4 mr-1" />
+                                            Live Demo
+                                        </motion.a>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     ))}
                 </motion.div>
             </div>
-            <div className="container mx-auto px-4 mt-5">
+            <div className="container mx-auto px-4 mt-10">
                 <motion.div
-                    initial={{opacity: 0, y: 20}}
-                    whileInView={{opacity: 1, y: 0}}
-                    viewport={{once: true}}
-                    transition={{duration: 0.5}}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl font-bold text-slate-900 mb-4">My personal Projects</h2>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-4">Personal Projects</h2>
                     <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
                 </motion.div>
 
@@ -210,7 +235,7 @@ export default function Projects() {
                     variants={container}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{once: true}}
+                    viewport={{ once: true }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {personalProjects.map((project) => (
@@ -227,12 +252,12 @@ export default function Projects() {
                                     <motion.a
                                         href={project.demoUrl}
                                         className="bg-white text-blue-600 p-2 rounded-full mx-1 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-                                        whileHover={{scale: 1.1}}
-                                        whileTap={{scale: 0.95}}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.95 }}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <EyeIcon className="h-5 w-5"/>
+                                        <EyeIcon className="h-5 w-5" />
                                     </motion.a>
                                 </div>}
                                 <span className="text-white text-lg font-medium">{project.title}</span>
@@ -241,15 +266,15 @@ export default function Projects() {
                                 <h3 className="text-xl font-semibold text-slate-900 mb-2">
                                     {project.subTitle}
                                 </h3>
-                                <p className="text-slate-600 mb-4 flex-1">{project.description}</p>
+                                <p className="text-slate-600 mb-4 flex-1 whitespace-pre-line">{project.description}</p>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.map((tag) => (
                                         <motion.span
                                             key={tag}
-                                            initial={{opacity: 0, scale: 0.8}}
-                                            whileInView={{opacity: 1, scale: 1}}
-                                            viewport={{once: true}}
-                                            transition={{duration: 0.3}}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.3 }}
                                             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
                                         >
                                             {tag}
@@ -260,38 +285,38 @@ export default function Projects() {
                                     <motion.a
                                         href={project.demoUrl}
                                         className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{x: 2}}
+                                        whileHover={{ x: 2 }}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <EyeIcon className="h-4 w-4 mr-1"/>
+                                        <EyeIcon className="h-4 w-4 mr-1" />
                                         Live Demo
                                     </motion.a>
                                 </div>}
-                                <div className="flex justify-between pt-4 border-t border-slate-100">
+                                {project.FERepo && <div className="flex justify-between pt-4 border-t border-slate-100">
                                     <motion.a
                                         href={project.FERepo}
                                         className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{x: 2}}
+                                        whileHover={{ x: 2 }}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <EyeIcon className="h-4 w-4 mr-1"/>
+                                        <EyeIcon className="h-4 w-4 mr-1" />
                                         FE Repo
                                     </motion.a>
-                                </div>
-                                <div className="flex justify-between pt-4 border-t border-slate-100">
+                                </div>}
+                                {project.BERepo && <div className="flex justify-between pt-4 border-t border-slate-100">
                                     <motion.a
                                         href={project.BERepo}
                                         className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{x: 2}}
+                                        whileHover={{ x: 2 }}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <EyeIcon className="h-4 w-4 mr-1"/>
+                                        <EyeIcon className="h-4 w-4 mr-1" />
                                         BE Repo
                                     </motion.a>
-                                </div>
+                                </div>}
                             </div>
                         </motion.div>
                     ))}

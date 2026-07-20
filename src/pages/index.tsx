@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 
 // Dynamically import components with no SSR
 const Navbar = dynamic(() => import('@/components/Navbar'), { ssr: false });
-const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
 const About = dynamic(() => import('@/components/About'), { ssr: false });
 const Skills = dynamic(() => import('@/components/Skills'), { ssr: false });
 const Projects = dynamic(() => import('@/components/Projects'), { ssr: false });
@@ -18,10 +17,9 @@ export default function Home() {
         <meta name="description" content="Personal portfolio showcasing my work and skills" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <Navbar />
       <main className="flex-grow">
-        <Hero />
         <About />
         <Skills />
         <Projects />
