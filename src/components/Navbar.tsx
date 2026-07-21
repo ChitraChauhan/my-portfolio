@@ -96,9 +96,6 @@ export default function Navbar() {
                 {link.name}
               </button>
             ))}
-            <button className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
-              Download CV
-            </button>
           </div>
         </div>
       )}
