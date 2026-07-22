@@ -105,7 +105,7 @@ export default function About() {
           >
             <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-slate-100 group">
               <img
-                src="/images/test.jpg"
+                src="/images/my_photo.png"
                 alt="Chitra Chauhan"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
