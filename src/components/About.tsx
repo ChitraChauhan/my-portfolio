@@ -70,7 +70,7 @@ export default function About() {
               variants={item}
               className="text-base md:text-lg text-slate-600 mb-8 leading-relaxed"
             >
-              I'm a Senior Software Developer with 6+ years of experience, passionate about building modern, scalable, and high-performance web applications. I enjoy transforming complex business requirements into intuitive digital experiences while writing clean, maintainable, and efficient code.
+              I'm a Senior Software Developer with 7+ years of experience, passionate about building modern, scalable, and high-performance web applications. I enjoy transforming complex business requirements into intuitive digital experiences while writing clean, maintainable, and efficient code.
               <br /><br />
               On the frontend, I work with Angular, React, and Next.js to create responsive, user-centric applications. On the backend, I build secure and scalable APIs using Node.js, Express.js, and NestJS, with MongoDB as my preferred database for developing robust data-driven solutions.
             </motion.p>
