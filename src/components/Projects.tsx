@@ -1,327 +1,292 @@
-import { motion } from 'framer-motion';
-import { EyeIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ArrowTopRightOnSquareIcon,
+  CodeBracketIcon,
+  SparklesIcon,
+  TagIcon,
+} from '@heroicons/react/24/outline';
 
 interface IProject {
-    id: number;
-    title: string;
-    subTitle: string;
-    description: string;
-    role?: string;
-    tags: string[];
-    demoUrl?: string;
-    FERepo?: string;
-    BERepo?: string;
+  id: number;
+  category: 'company' | 'personal';
+  title: string;
+  subTitle: string;
+  description: string;
+  role?: string;
+  tags: string[];
+  demoUrl?: string;
+  FERepo?: string;
+  BERepo?: string;
 }
-// Animation variants
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
 
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: "easeOut"
-        }
-    }
-};
+const allProjects: IProject[] = [
+  // Company Projects
+  {
+    id: 1,
+    category: 'company',
+    title: 'Movieranker',
+    subTitle: 'Social Movie Hub & Discovery Platform',
+    description:
+      "World's leading social movie platform enabling users to discover movies, preview trailers, receive personalized recommendations, and connect with film enthusiasts. Built with server-side rendering using Angular Universal, custom image lazy-loading, and Smartfeed integration.",
+    role: 'Maintenance Lead • Architecture Lifecycle',
+    tags: ['Angular Universal', 'Bootstrap', 'SSR', 'Smartfeed API', 'Lazy Loading'],
+    demoUrl: 'https://webosmotic.com/portfolio/movieranker/',
+  },
+  {
+    id: 2,
+    category: 'company',
+    title: 'Altavod',
+    subTitle: 'Filmmaker Content Monetization Platform',
+    description:
+      'A digital ecosystem bridging independent filmmakers and global audiences. Empowers filmmakers with direct content marketing and monetization tools, implemented with NGXS facade pattern architecture and responsive design.',
+    role: 'Frontend Lead • State Architecture',
+    tags: ['Angular 11', 'NGXS', 'RxJS', 'Tailwind CSS', 'Stripe'],
+    demoUrl: 'https://webosmotic.com/portfolio/altavod/',
+  },
+  {
+    id: 3,
+    category: 'company',
+    title: 'OKR Steering',
+    subTitle: 'Enterprise KPI & Goal Management SaaS',
+    description:
+      'Integrated management and steering platform empowering organizations to implement objectives faster with high clarity. Features data visualizations, custom KPI tracking dashboards, and robust end-to-end testing.',
+    role: 'Frontend Lead • UI Architecture',
+    tags: ['Angular 13', 'NGXS', 'RxJS', 'PrimeNG', 'Syncfusion', 'D3.js', 'Playwright'],
+    demoUrl: 'https://webosmotic.com/portfolio/okr-steering/',
+  },
+  {
+    id: 4,
+    category: 'company',
+    title: 'Coables',
+    subTitle: 'Online Pediatric Therapy SaaS Ecosystem',
+    description:
+      'Modular, scalable SaaS platform with secure JWT multi-role authorization. Features a custom slot-generation appointment engine for dynamic therapist scheduling, and RESTful APIs powering web and mobile clients.',
+    role: 'Full Stack Lead • Web & Mobile Architecture',
+    tags: ['Node.js', 'React.js', 'React Native', 'MongoDB', 'AWS', 'RESTful API'],
+    demoUrl: 'https://webosmotic.com/portfolio/coables/',
+  },
 
-const cardHover = {
-    scale: 1.03,
-    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-    transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 15
-    }
-};
-
-const companyProjects: IProject[] = [
-    {
-        id: 1,
-        title: 'Movieranker',
-        subTitle: 'Movieranker - a Perfect Social Hub for Movie Lovers.',
-        description: 'MovieRanker is the world\'s best social movie platform. Discover new movies, theater movies, preview movies trailers, movie news and more that match your preferences, share or receive the best movie recommendations, or connect with other movie-lovers to discuss your favorite films.' +
-            'Movie Ranker incorporates server-side rendering leveraging Angular Universal. ' +
-            'Implemented additional features to enhance website performance, such as lazy loading and image lazy loading. ' +
-            'Integrated Smartfeed to display personalized feeds from the open web.',
-        role: 'Did maintanance - Managed lifecycle, ensured best practices',
-        tags: ['Angular 2', 'Bootstrap'],
-        demoUrl: 'https://webosmotic.com/portfolio/movieranker/',
-    },
-    {
-        id: 2,
-        title: 'Altavod',
-        subTitle: 'Altavod - An Ultimate Filmmaker\'s Toolkit to Engage Audiences and Monetize Content.',
-        description: 'Altavod, is an extension of MovieRanker. It serves as a unique platform bridging filmmakers and their audiences. ' +
-            'Enabling content marketing and monetization for filmmakers provides consumers a space to discover and support beloved films and creators.' +
-            ' A versatile solution for individuals and companies in the film industry, ' +
-            'Altavod’s implementation demanded the integration of NGXS with a facade structure.',
-        role: 'Led frontend, optimized performance, Reduced load time',
-        tags: ['Angular 11', 'Ngxs', 'Rxjs', 'Tailwindcss', 'Stripe'],
-        demoUrl: 'https://webosmotic.com/portfolio/altavod/',
-    },
-    {
-        id: 3,
-        title: ' OKR Steering',
-        subTitle: 'OKR Steering: KPI Management made Easy for Businesses.',
-        description: 'The OKR Steering gives you and your organization a decisive competitive advantage. It’s an integrated thinking and management framework that helps your teams implement topics quicker and more productively than ever before. With Next Level KPI Management and using OKRs as a steering mechanism, it helps to focus on things that have a real impact on the organization.',
-        tags: ['Angular 13', 'Ngxs', 'Rxjs', 'Bootstrap', 'PrimeNg', 'Syncfusion', 'd3', 'Playwright'],
-        role: 'Led frontend, optimized performance, Reduced load time',
-        demoUrl: 'https://webosmotic.com/portfolio/okr-steering/',
-    },
-    {
-        id: 4,
-        title: 'Coables',
-        subTitle: 'Online Therapy for Kids SaaS Platform',
-        description: 'Built a modular, scalable Node.js & Express SaaS platform with secure JWT-based multi-role authentication. ' +
-            'Designed optimized MongoDB data models and a custom slot-generation appointment engine for dynamic therapist scheduling. ' +
-            'Developed a robust RESTful API ecosystem powering seamless web and mobile client integration for therapy session management.',
-        tags: ['Node.js', 'React.js', 'React Native', 'MongoDB', 'AWS'],
-        role: 'Led frontend and backend both the Application.',
-        demoUrl: 'https://webosmotic.com/portfolio/coables/',
-    },
+  // Personal Projects
+  {
+    id: 5,
+    category: 'personal',
+    title: 'StoryForge',
+    subTitle: 'Cloud-Native AI Collaborative Storytelling Platform',
+    description:
+      'Multi-chapter interactive story editor with collaborative sharing and AI co-writing capabilities. Features background export queue workers dynamically scaling AWS EC2 instances for PDF generation, storing in S3 and notifying via AWS SES/SNS.',
+    role: 'Creator & Architect',
+    tags: ['React 19', 'NestJS', 'MongoDB', 'AWS EC2/S3/SES', 'OpenAI API', 'MUI'],
+    FERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-FE',
+    BERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-BE',
+  },
+  {
+    id: 6,
+    category: 'personal',
+    title: 'Postgram - Web App',
+    subTitle: 'Real-Time Social Media Platform',
+    description:
+      'Full-featured social platform with email OTP verification, searchable real-time feed, live WebSocket chat, followers/following management, comments, and profile customization.',
+    role: 'Full Stack Creator',
+    tags: ['React', 'RTK Query', 'Socket.io', 'Node.js', 'Express', 'MongoDB'],
+    FERepo: 'https://github.com/ChitraChauhan/React-Postgram',
+    BERepo: 'https://github.com/ChitraChauhan/React-Postgram-Backend',
+  },
+  {
+    id: 7,
+    category: 'personal',
+    title: 'Postgram - Mobile App',
+    subTitle: 'Cross-Platform Social Networking App',
+    description:
+      'Cross-platform mobile application companion featuring interactive feed, real-time messaging using sockets, profile management, and a clean Nest.js backend architecture.',
+    role: 'Mobile & Backend Developer',
+    tags: ['React Native', 'Socket.io', 'NestJS', 'MongoDB'],
+    FERepo: 'https://github.com/ChitraChauhan/ReactNative-Postgram/',
+    BERepo: 'https://github.com/ChitraChauhan/Nest-Postgram',
+  },
+  {
+    id: 8,
+    category: 'personal',
+    title: 'MEANKart',
+    subTitle: 'Full-Featured E-Commerce Application',
+    description:
+      'Modern e-commerce platform with dynamic product catalog, multi-criteria filters, cart management, order history tracking, and seamless Razorpay payment gateway integration.',
+    role: 'Full Stack Creator',
+    tags: ['Angular', 'Node.js', 'Express', 'MongoDB', 'Razorpay', 'Tailwind CSS'],
+    FERepo: 'https://github.com/ChitraChauhan/MeanKart',
+    BERepo: 'https://github.com/ChitraChauhan/MeanKart-BE',
+  },
 ];
 
-const personalProjects: IProject[] = [
-    {
-        id: 1,
-        title: 'Postgram - Web App',
-        subTitle: 'Postgram: It is an Instagram-like social media web application',
-        description: 'This is a mini Instagram-like social media project built entirely by me using React and Node.js. It includes essential features such as email and OTP verification, searchable feed, real-time chat using sockets, followers/following management, comments and user profile editing. After signing in, users are directed to a home page with a navigation bar to explore different sections, create new posts, chat with previous contacts, and manage their connections.',
-        tags: ['React', 'RTK Query', 'React Context API', 'Bootstrap', 'socket.io-client', 'Node.js', 'Express', 'MongoDB'],
-        FERepo: 'https://github.com/ChitraChauhan/React-Postgram',
-        BERepo: 'https://github.com/ChitraChauhan/React-Postgram-Backend',
-    },
-    {
-        id: 2,
-        title: 'Postgram - Mobile App',
-        subTitle: 'Postgram: It is an Instagram-like social media app',
-        description: 'This is a mini Instagram-like social media project built entirely by me using React-Native and Nest.js. It includes searchable feed, real-time chat using sockets, followers/following management, and user profile editing. After signing in, users are directed to a home page with a navigation bar to explore different sections, create new posts, chat with previous contacts, and manage their connections.',
-        tags: ['React-Native', 'socket.io-client', 'Nest.js', 'MongoDB'],
-        FERepo: 'https://github.com/ChitraChauhan/ReactNative-Postgram/',
-        BERepo: 'https://github.com/ChitraChauhan/Nest-Postgram',
-    },
-    {
-        id: 3,
-        title: 'MEANKart',
-        subTitle: 'MEANKart: It is an E-commerce Application',
-        description: 'It is an e-commerce platform with product catalog, filters, cart, order history, and Razorpay payment integration.',
-        tags: ['Angular 20', 'TailwindCSS', 'Node.js', 'Express', 'MongoDB', 'Razorpay'],
-        FERepo: 'https://github.com/ChitraChauhan/MeanKart',
-        BERepo: 'https://github.com/ChitraChauhan/MeanKart-BE'
-    },
-    {
-        id: 4,
-        title: 'StoryForge',
-        subTitle: 'A cloud-native, AI-integrated collaborative storytelling platform.',
-        description: 'Interactive multi-chapter Story Editor with collaborative sharing. ' +
-            'Creative writing AI co-writer (prompt enhancement, story idea generation, and chapter editor). ' +
-            'Queue-based background export worker system that dynamically starts/stops AWS EC2 instances to process PDF exports, storing results in AWS S3 and notifying users via AWS SES/SNS.',
-        tags: ['React 19', 'NestJS', 'MongoDB', 'AWS', 'OpenAI API', 'MUI'],
-        FERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-FE',
-        BERepo: 'https://github.com/ChitraChauhan/StoryForge-NextGen-BE'
-    },
-]
-
 export default function Projects() {
-    return (
-        <section id="projects" className="py-20 bg-slate-50">
-            <div className="container mx-auto px-4 mb-5">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl font-bold text-slate-900 mb-4">Company Projects</h2>
-                    <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                </motion.div>
+  const [filter, setFilter] = useState<'all' | 'company' | 'personal'>('all');
 
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    {companyProjects.map((project) => (
-                        <motion.div
-                            key={project.id}
-                            variants={item}
-                            whileHover={cardHover}
-                            className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
-                        >
-                            <div
-                                className="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center relative overflow-hidden group">
-                                {project.demoUrl && (
-                                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <motion.a
-                                            href={project.demoUrl}
-                                            className="bg-white text-blue-600 p-2 rounded-full mx-1 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <EyeIcon className="h-5 w-5" />
-                                        </motion.a>
-                                    </div>
-                                )}
-                                <span className="text-white text-lg font-medium">{project.title}</span>
-                            </div>
-                            <div className="p-6 flex-1 flex flex-col">
-                                <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                                    {project.subTitle}
-                                </h3>
-                                <p className="text-slate-600 mb-4 flex-1 whitespace-pre-line">{project.description}</p>
-                                {project.role && <p className="text-slate-600 mb-4 flex-1"><b>My Role: </b>{project.role}</p>}
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.tags.map((tag) => (
-                                        <motion.span
-                                            key={tag}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.3 }}
-                                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
-                                        >
-                                            {tag}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                                {project.demoUrl && (
-                                    <div className="flex justify-between pt-4 border-t border-slate-100">
-                                        <motion.a
-                                            href={project.demoUrl}
-                                            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                            whileHover={{ x: 2 }}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <EyeIcon className="h-4 w-4 mr-1" />
-                                            Live Demo
-                                        </motion.a>
-                                    </div>
-                                )}
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </div>
-            <div className="container mx-auto px-4 mt-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-3xl font-bold text-slate-900 mb-4">Personal Projects</h2>
-                    <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-                </motion.div>
+  const filteredProjects = allProjects.filter((p) => {
+    if (filter === 'all') return true;
+    return p.category === filter;
+  });
 
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    {personalProjects.map((project) => (
-                        <motion.div
-                            key={project.id}
-                            variants={item}
-                            whileHover={cardHover}
-                            className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+  return (
+    <section id="projects" className="py-20 bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-800/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <span className="section-badge mb-3">Portfolio Showcase</span>
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="section-subtitle">
+            A curated selection of enterprise client platforms, scalable SaaS products, and full-stack personal engineering projects.
+          </p>
+        </motion.div>
+
+        {/* Filter Controls */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${filter === 'all'
+              ? 'bg-blue-600 text-white shadow-sm'
+              : 'bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200/60 dark:border-slate-750'
+              }`}
+          >
+            All Projects ({allProjects.length})
+          </button>
+          <button
+            onClick={() => setFilter('company')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${filter === 'company'
+              ? 'bg-blue-600 text-white shadow-sm'
+              : 'bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200/60 dark:border-slate-750'
+              }`}
+          >
+            Enterprise & Client ({allProjects.filter((p) => p.category === 'company').length})
+          </button>
+          <button
+            onClick={() => setFilter('personal')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${filter === 'personal'
+              ? 'bg-blue-600 text-white shadow-sm'
+              : 'bg-slate-100 dark:bg-slate-850 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200/60 dark:border-slate-750'
+              }`}
+          >
+            Personal & SaaS ({allProjects.filter((p) => p.category === 'personal').length})
+          </button>
+        </div>
+
+        {/* Project Cards Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
+          >
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="card-surface flex flex-col justify-between overflow-hidden hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark transition-all duration-300 group hover:-translate-y-1"
+              >
+                <div>
+                  {/* Card Window Mockup Header */}
+                  <div className="bg-slate-100/80 dark:bg-slate-800/80 px-4 py-3 border-b border-slate-200/70 dark:border-slate-750 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                    </div>
+                    <span className="text-[11px] font-mono tracking-wider uppercase font-semibold text-slate-500 dark:text-slate-400">
+                      {project.category === 'company' ? 'Enterprise' : 'Full Stack'}
+                    </span>
+                  </div>
+
+                  <div className="p-6">
+                    {/* Title and Subtitle */}
+                    <div className="mb-3">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 mt-0.5">
+                        {project.subTitle}
+                      </p>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 line-clamp-4">
+                      {project.description}
+                    </p>
+
+                    {/* Role badge if available */}
+                    {project.role && (
+                      <div className="mb-4 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50/80 dark:bg-blue-950/40 text-blue-900 dark:text-blue-200 border border-blue-100/80 dark:border-blue-900/40">
+                        <SparklesIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                        <span className="leading-snug">
+                          <strong className="font-semibold text-slate-800 dark:text-slate-100">Role:</strong> {project.role}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-blue-50/80 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-900/40"
                         >
-                            <div
-                                className="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center relative overflow-hidden group">
-                                {project.demoUrl && <div
-                                    className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <motion.a
-                                        href={project.demoUrl}
-                                        className="bg-white text-blue-600 p-2 rounded-full mx-1 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-5 w-5" />
-                                    </motion.a>
-                                </div>}
-                                <span className="text-white text-lg font-medium">{project.title}</span>
-                            </div>
-                            <div className="p-6 flex-1 flex flex-col">
-                                <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                                    {project.subTitle}
-                                </h3>
-                                <p className="text-slate-600 mb-4 flex-1 whitespace-pre-line">{project.description}</p>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.tags.map((tag) => (
-                                        <motion.span
-                                            key={tag}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.3 }}
-                                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
-                                        >
-                                            {tag}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                                {project.demoUrl && <div className="flex justify-between pt-4 border-t border-slate-100">
-                                    <motion.a
-                                        href={project.demoUrl}
-                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{ x: 2 }}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-4 w-4 mr-1" />
-                                        Live Demo
-                                    </motion.a>
-                                </div>}
-                                {project.FERepo && <div className="flex justify-between pt-4 border-t border-slate-100">
-                                    <motion.a
-                                        href={project.FERepo}
-                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{ x: 2 }}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-4 w-4 mr-1" />
-                                        FE Repo
-                                    </motion.a>
-                                </div>}
-                                {project.BERepo && <div className="flex justify-between pt-4 border-t border-slate-100">
-                                    <motion.a
-                                        href={project.BERepo}
-                                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                                        whileHover={{ x: 2 }}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <EyeIcon className="h-4 w-4 mr-1" />
-                                        BE Repo
-                                    </motion.a>
-                                </div>}
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </div>
-        </section>
-    );
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action Footer with Links */}
+                <div className="px-6 py-4 bg-slate-50/50 dark:bg-slate-850/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 text-xs font-semibold">
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                    >
+                      <span>Live Demo</span>
+                      <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+
+                  <div className="flex items-center gap-3 ml-auto">
+                    {project.FERepo && (
+                      <a
+                        href={project.FERepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+                      >
+                        <CodeBracketIcon className="w-3.5 h-3.5" />
+                        <span>FE Code</span>
+                      </a>
+                    )}
+                    {project.BERepo && (
+                      <a
+                        href={project.BERepo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
+                      >
+                        <CodeBracketIcon className="w-3.5 h-3.5" />
+                        <span>BE Code</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
 }
