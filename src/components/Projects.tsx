@@ -116,6 +116,19 @@ const allProjects: IProject[] = [
     FERepo: 'https://github.com/ChitraChauhan/MeanKart',
     BERepo: 'https://github.com/ChitraChauhan/MeanKart-BE',
   },
+  {
+    id: 9,
+    category: 'personal',
+    title: 'CA Audit File Tracker',
+    subTitle: 'Secure CA access for tracking audit files, returns, and status updates in one dashboard.',
+    description:
+      'Centralized audit file management system engineered for CA firms to eliminate physical document loss and streamline statutory compliance. Features automated file balance calculations, real-time return custody logs, fee & Tally ERP reconciliation, and dynamic multi-criteria deadline tracking.',
+    role: 'Full Stack Creator',
+    tags: ['React', 'Node.js', 'Express.js', 'MongoDB'],
+    FERepo: 'https://github.com/ChitraChauhan/CA-Audit-File-Tracker-FE',
+    BERepo: 'https://github.com/ChitraChauhan/CA-Audit-File-Tracker-BE',
+    demoUrl: 'https://ca-audit-file-tracker.vercel.app/'
+  },
 ];
 
 export default function Projects() {
